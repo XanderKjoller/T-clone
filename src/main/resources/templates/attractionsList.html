@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+    <link rel="stylesheet" th:ref="@{/css/attractionsList.css}">
+</head>
+<body>
+<div class="button">
+    <a th:href="@{/}">
+        <button type="button">Home</button>
+    </a>
+</div>
+<header>
+    <h1> Tourist Attractions </h1>
+</header>
+<main>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th> City</th>
+            <th>Tags</th>
+            <th>More info</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="attraction : ${attractions}">
+            <td th:text="${attraction.name}"/>
+            <td th:text="${attraction.description}"/>
+            <td th:text="${attraction.city}"/>
+            <td><a th:href="@{/attractions/{name}/tags(name=${attraction.name})}">Tags</a></td>
+            <td><a th:href="@{/attractions/{name}(name=${attraction.name})}">View</a></td>
+            <td><a th:href="|attractions/${attraction.name}/edit|">Edit</a></td>
+            <td><a th:href="|attractions/${attraction.name}/delete|">delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+</main>
+
+
+<div class="button">
+    <a th:href="@{/attractions/createNewAttraction}">
+            <button type="button">Create New Attraction</button>
+    </a>
+</div>
+</body>
+</html>
